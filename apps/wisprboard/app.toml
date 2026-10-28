@@ -1,0 +1,23 @@
+name = "WisprBoard"
+noun = "keyboard"
+category = "UtilitiesApplication"
+order = 6
+color = "#5B6573"
+backdrop = "#2E3238"
+line = "Talk, and get clean text in any app. HeliBoard with AI dictation and one-tap text fix, on your own key: no account, no subscription."
+points = [
+  "Long-press Return, speak, and clean text comes back",
+  "Fix or translate a selection, and check it before it replaces yours",
+  "Zero data retention by default, or dictation fully offline",
+]
+platforms = ["Android 5+"]
+license = "GPL-3.0"
+asks = "microphone, contacts (optional), network"
+talks = "OpenRouter or PayPerQ, only with your key"
+based_on = "HeliBoard"
+repo = "Turtlecute33/WisprBoard"
+
+[[download]]
+label = "Android"
+repo = "Turtlecute33/WisprBoard"
+asset = '\.apk$'

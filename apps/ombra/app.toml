@@ -1,0 +1,25 @@
+name = "Ombra"
+noun = "VPN app"
+category = "SecurityApplication"
+order = 3
+size = "l"                    # l = large square; medium if absent
+color = "#FF6025"
+backdrop = "#2A1A14"
+line = "The Obscura VPN, tuned for speed. In our test it downloaded about 9× faster than the official app, on 12× less CPU."
+points = [
+  "270 Mbit/s down, against 30 for the official app",
+  "Ping under load of 25–55 ms, not 110–250 ms",
+  "Stealth, Speed or TCP/TLS, on 17 patches to the Rust core",
+]
+note = "Not made by Obscura. Estimates from one Pixel on one Wi-Fi network."
+platforms = ["Android 16+", "arm64"]
+license = "GPL-3.0"
+asks = "network, VPN"
+talks = "Obscura VPN"
+based_on = "Obscura Rust core"
+repo = "Turtlecute33/Ombra"
+
+[[download]]
+label = "Android"
+repo = "Turtlecute33/Ombra"
+asset = '\.apk$'

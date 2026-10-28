@@ -1,0 +1,27 @@
+name = "TextFix"
+noun = "proofreader"
+category = "DesktopEnhancementApplication"
+order = 8
+color = "#3A36C4"
+line = "A “fix my text” key for your whole computer. Press it in any text box and the text comes back correct, in place. One undo brings back the original."
+points = [
+  "Native and small: 1 MB on a Mac, 6 MB on Windows",
+  "Your own OpenRouter or PayPerQ key, zero data retention first",
+  "Refuses password fields and terminals, and never logs your text",
+]
+platforms = ["macOS 13+", "Windows"]
+license = "GPL-3.0"
+asks = "Accessibility on macOS, one global hotkey"
+talks = "OpenRouter or PayPerQ, only with your key"
+repo = "Turtlecute33/TextFix"
+brew = "turtlecute33/tap/textfix"
+
+[[download]]
+label = "macOS"
+repo = "Turtlecute33/TextFix"
+asset = 'macos.*\.zip$'
+
+[[download]]
+label = "Windows"
+repo = "Turtlecute33/TextFix"
+asset = 'win.*\.zip$'

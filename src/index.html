@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#efede8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta name="author" content="{{handle}}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{handle}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="https://{{domain}}/">
+<meta property="og:image" content="https://{{domain}}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{handle}}: {{tagline}}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://{{domain}}/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+{{preload}}
+<style>{{css}}</style>
+<script type="application/ld+json">{{jsonld}}</script>
+</head>
+<body>
+{{sprite}}
+<header class="top">
+<p class="who">{{handle}} · {{tagline}}</p>
+<h1>{{lead}}</h1>
+</header>
+<main class="wall">
+<div class="grid">
+{{wall}}
+<aside class="tile colo" style="--i:{{count}}">
+<div class="frame"><div class="turn"><div class="flip">
+<div class="face front"><div class="walk">{{turtle}}</div></div>
+<div class="face back shot" aria-hidden="true">{{about}}</div>
+</div></div>
+<p class="pl"><b>{{handle}}</b><span>about · links</span></p>
+<button class="hit" popovertarget="about" aria-label="About {{handle}}"></button>
+</div>
+</aside>
+</div>
+</main>
+{{panels}}
+<section popover id="about" class="p colo" aria-labelledby="about-t">
+<figure class="shot" aria-hidden="true">{{about}}</figure>
+<div class="info"><header><span class="pi">{{turtle}}</span><div><h2 id="about-t">{{handle}}</h2>
+<p class="kind">{{role}}</p></div>
+<button class="x" popovertarget="about" popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2l6 6M8 2l-6 6"/></svg></button></header>
+{{bio}}
+<nav class="get">{{links}}</nav>
+<dl><div><dt>Apps</dt><dd>{{count}}, all open source</dd></div><div><dt>This page</dt><dd>{{weight}}</dd></div><div><dt>Talks to</dt><dd>{{domain}} only</dd></div></dl></div>
+</section>
+</body>
+</html>

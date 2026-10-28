@@ -1,0 +1,21 @@
+name = "Plico"
+noun = "mail client"
+category = "CommunicationApplication"
+order = 1
+color = "#3F51B5"
+line = "Push mail without Google. One IMAP IDLE connection for each account brings new mail in seconds, with no Firebase and no relay server."
+points = [
+  "Blocks remote images, tracking pixels and link trackers",
+  "Shows the real domain behind each link and flags faked senders",
+  "Its own IMAP, SMTP and MIME code, in a 4.5 MB app",
+]
+platforms = ["Android 15+"]
+license = "GPL-3.0"
+asks = "network, background push, exact alarm"
+talks = "your mail server"
+repo = "Turtlecute33/Plico"
+
+[[download]]
+label = "Android"
+repo = "Turtlecute33/Plico"
+asset = '\.apk$'

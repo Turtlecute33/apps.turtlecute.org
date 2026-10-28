@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 18 72 72" width="128" height="128">
+  <title>WisprBoard</title>
+  <rect x="18" y="18" width="72" height="72" rx="20" fill="#F6F7F9"/>
+  <g fill="none" stroke="#2E3238" stroke-linecap="round" stroke-linejoin="round" transform="scale(.25)">
+    <path stroke-width="16" d="M216,88C287,88 344,145 344,216C344,287 287,344 216,344C145,344 88,287 88,216C88,145 145,88 216,88Z"/>
+    <path stroke-width="14" d="M104,221L158,221M274,221L328,221"/>
+    <path stroke-width="16" d="M158,166C158,151 170,139 185,139L247,139C262,139 274,151 274,166L274,270C274,285 262,297 247,297L185,297C170,297 158,285 158,270Z"/>
+    <path stroke-width="16" d="M158,221C174,221 183,221 195,206C207,191 225,191 237,206C249,221 258,221 274,221"/>
+  </g>
+</svg>

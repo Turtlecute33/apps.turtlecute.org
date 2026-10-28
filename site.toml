@@ -1,0 +1,23 @@
+title = "Open-source privacy apps for Android and Mac · Turtlecute"
+# The search result: about 155 characters, the strongest app first.
+description = "Nine open-source apps by Turtlecute: a faster Obscura VPN client, MEGA without tracking, push mail without Google, post-quantum SSH and more. No trackers."
+tagline = "open-source privacy apps for Android and Mac"   # next to the handle, above the title
+handle = "Turtlecute"
+domain = "apps.turtlecute.org"
+lead = "I build my own"
+role = "privacy advocate · bitcoiner"   # under the name in the close-up
+
+# The close-up of the wall label: the first paragraph is the large one.
+about = [
+  "Hi, I'm Turtlecute: a Bitcoin educator, privacy advocate and security researcher from Italy.",
+  "I write free guides in Italian on turtlecute.org about GrapheneOS, Bitcoin privacy, Tor and self-hosting. To me, privacy is a right that you use every day, not something to hide.",
+  "These apps come from the same idea. Most began as a fix for an app that I used: a VPN that was too slow, a cloud drive with too much telemetry, a dictation app that wanted a subscription.",
+  "The turtle is slow. The apps are not.",
+]
+
+[links]
+Guides = "https://turtlecute.org"
+GitHub = "https://github.com/Turtlecute33"
+X = "https://x.com/Turtlecute33"
+Instagram = "https://instagram.com/turtlecute33"
+LinkedIn = "https://linkedin.com/in/Turtlecute"

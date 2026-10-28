@@ -1,0 +1,23 @@
+name = "Varco"
+noun = "SSH client"
+category = "DeveloperApplication"
+order = 2
+color = "#8839EF"
+backdrop = "#1E1E2E"
+line = "SSH with keys that cannot be stolen. They stay in the phone's secure chip or on your YubiKey, and post-quantum key exchange comes first."
+points = [
+  "ML-KEM and sntrup761 first. No SHA-1, CBC or ssh-rsa",
+  "Termux terminal: vim, tmux and htop, with sessions that stay open",
+  "No HTTP requests at all, in a 3.6 MB app",
+]
+platforms = ["Android 15+"]
+license = "GPL-3.0"
+asks = "network, NFC (YubiKey), biometrics"
+talks = "your SSH servers"
+based_on = "Termux terminal engine"
+repo = "Turtlecute33/Varco"
+
+[[download]]
+label = "Android"
+repo = "Turtlecute33/Varco"
+asset = '\.apk$'

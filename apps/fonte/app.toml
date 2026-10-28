@@ -1,0 +1,22 @@
+name = "Fonte"
+noun = "app updater"
+category = "UtilitiesApplication"
+order = 5
+size = "l"                    # l = large square; medium if absent
+color = "#1B6E7A"
+line = "Apps straight from their developers, checked before every install: the SHA-256 digest and the pinned signing certificate must match."
+points = [
+  "GitHub, GitLab, Codeberg, F-Droid and IzzyOnDroid in one list",
+  "Fast HTTP/3 checks of all your apps at the same time",
+  "2.7 MB, with no native code, no WebView and no dynamic code",
+]
+platforms = ["Android 15+"]
+license = "GPL-3.0"
+asks = "network, install and update apps, see installed apps"
+talks = "only the sources you add"
+repo = "Turtlecute33/Fonte"
+
+[[download]]
+label = "Android"
+repo = "Turtlecute33/Fonte"
+asset = '\.apk$'

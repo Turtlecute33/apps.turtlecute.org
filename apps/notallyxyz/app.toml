@@ -1,0 +1,38 @@
+name = "NotallyXYZ"
+noun = "notebook"
+category = "BusinessApplication"
+order = 7
+color = "#7184D0"
+line = "NotallyX on all your devices: end-to-end encrypted sync to your own server, and native apps for macOS, Windows and Linux."
+points = [
+  "The server never sees your key, text, labels or file names",
+  "No account: one 256-bit key, no email and no password",
+  "Edits sync in seconds, and a conflict keeps both versions",
+]
+platforms = ["Android 7+", "macOS 26+", "Windows", "Linux"]
+license = "GPL-3.0"
+asks = "microphone for voice notes, alarms for reminders"
+talks = "nothing, or your own server when sync is on"
+based_on = "NotallyX"
+repo = "Turtlecute33/NotallyXYZ"
+brew = "turtlecute33/tap/notallyxyz"
+
+[[download]]
+label = "Android"
+repo = "Turtlecute33/NotallyXYZ"
+asset = '-android-.*\.apk$'
+
+[[download]]
+label = "macOS"
+repo = "Turtlecute33/NotallyXYZ"
+asset = '-macos-.*\.dmg$'
+
+[[download]]
+label = "Windows"
+repo = "Turtlecute33/NotallyXYZ"
+asset = '-windows-.*\.exe$'
+
+[[download]]
+label = "Linux"
+repo = "Turtlecute33/NotallyXYZ"
+asset = '-linux-x86_64-.*\.tar\.gz$'

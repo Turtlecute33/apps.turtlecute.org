@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 18 72 72" width="128" height="128">
+  <title>Ombra</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF7A45"/>
+      <stop offset=".55" stop-color="#FF6025"/>
+      <stop offset="1" stop-color="#E04A12"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="18" width="72" height="72" rx="20" fill="url(#bg)"/>
+  <path fill="#FFFFFF" d="M54,30 A24,24 0 0,0 54,78 A10,24 0 0,1 54,30 Z"/>
+  <path fill="#1B1D20" d="M54,30 A10,24 0 0,0 54,78 A24,24 0 0,0 54,30 Z"/>
+</svg>

@@ -1,0 +1,29 @@
+name = "MegaGlass"
+noun = "cloud drive"
+category = "UtilitiesApplication"
+order = 4
+color = "#D21F24"
+line = "MEGA, built for speed and without the tracking: the official engine with desktop transfer settings, and no telemetry on Android."
+points = [
+  "8 parallel connections each way and 8× larger requests",
+  "Hardware AES on every Apple Silicon Mac, not only the M1",
+  "Video seeks play at once, with no wait of up to 36 s",
+]
+note = "Alpha software. Not made or endorsed by MEGA."
+platforms = ["Android 15+", "macOS 26+"]
+license = "GPL-3.0"
+asks = "network, photos and videos for camera uploads"
+talks = "MEGA"
+based_on = "MEGA SDK"
+repo = "Turtlecute33/MegaGlass-Android"
+brew = "turtlecute33/tap/megaglass"
+
+[[download]]
+label = "Android"
+repo = "Turtlecute33/MegaGlass-Android"
+asset = '\.apk$'
+
+[[download]]
+label = "macOS"
+repo = "Turtlecute33/MegaGlass-macOS"
+asset = '\.dmg$'

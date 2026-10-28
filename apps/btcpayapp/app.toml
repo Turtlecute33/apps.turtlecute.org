@@ -1,0 +1,23 @@
+name = "btcpayapp"
+noun = "payment terminal"
+category = "FinanceApplication"
+order = 9
+color = "#51B13E"
+backdrop = "#12301C"
+line = "Your BTCPay Server in your pocket: a native point of sale, invoices with refunds, and on-chain and Lightning wallets."
+points = [
+  "A fingerprint or PIN before each send or payout",
+  "Talks only to your server, also over Tor",
+  "No analytics, no push service and no Google",
+]
+note = "Unofficial. Not made or endorsed by the BTCPay Server Foundation."
+platforms = ["Android 15+"]
+license = "MIT"
+asks = "network, camera for QR codes"
+talks = "your BTCPay server, through Orbot for .onion"
+repo = "Turtlecute33/btcpayapp"
+
+[[download]]
+label = "Android"
+repo = "Turtlecute33/btcpayapp"
+asset = '\.apk$'

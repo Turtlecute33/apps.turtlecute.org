@@ -447,7 +447,7 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
 /* Touch screens: targets of 44 px or more. */
 @media (pointer: coarse) {
   .x { width: 2.75rem; height: 2.75rem; }
-  .get a { padding-block: .75rem; }
+  .get a { padding-block: .82rem; }
 }
 
 .brew { display: block; margin: .7rem 0 0; color: var(--mute); user-select: all; -webkit-user-select: all; overflow-wrap: anywhere; }

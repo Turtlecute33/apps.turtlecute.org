@@ -102,7 +102,7 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
    Firefox then shows them through the turned square. So the front face joins the 3D scene (no
    clipping, which would flatten it), and its children sit just in front and hide their own backs. */
 .front { overflow: visible; transform-style: preserve-3d; }
-.logo, .front::after { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.lg, .front::after { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
 
 .back { transform: rotateY(180deg); }
 
@@ -130,7 +130,9 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
   transform: translateZ(1px);
 }
 
-.logo { position: relative; z-index: 1; width: 34%; margin-bottom: 6%; transform: translateZ(3px); filter: drop-shadow(0 .8cqi 1.2cqi rgba(0, 0, 0, .25)); }
+/* The logo floats in an HTML wrapper: Chromium animates a transform on an <svg> on the main thread. */
+.lg { position: relative; z-index: 1; width: 34%; margin-bottom: 6%; transform: translateZ(3px); }
+.logo { display: block; width: 100%; height: auto; filter: drop-shadow(0 .8cqi 1.2cqi rgba(0, 0, 0, .25)); }
 
 /* The label is glass and stays put while the square turns behind it. */
 .pl {
@@ -285,24 +287,36 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
 }
 
 /* Across the label in whole pixels, a pause, about turn, and back. */
+/* The distance is a percentage of the turtle's own width (82cqi - --tw): container units or var()
+   in the keyframes keep the animation on the main thread. walk-s is the small square. */
 @keyframes walk {
   0% { translate: 0 0; scale: 1 1; }
-  47% { translate: calc(82cqi - var(--tw)) 0; scale: 1 1; }
-  50% { translate: calc(82cqi - var(--tw)) 0; scale: 1 1; animation-timing-function: steps(1, end); }
-  50.1% { translate: calc(82cqi - var(--tw)) 0; scale: -1 1; }
+  47% { translate: 64% 0; scale: 1 1; }
+  50% { translate: 64% 0; scale: 1 1; animation-timing-function: steps(1, end); }
+  50.1% { translate: 64% 0; scale: -1 1; }
   97%, 100% { translate: 0 0; scale: -1 1; }
+}
+
+@keyframes walk-s {
+  0% { translate: 0 0; scale: 1 1; }
+  47% { translate: 86.4% 0; scale: 1 1; }
+  50% { translate: 86.4% 0; scale: 1 1; animation-timing-function: steps(1, end); }
+  50.1% { translate: 86.4% 0; scale: -1 1; }
+  97%, 100% { translate: 0 0; scale: -1 1; }
+}
 }
 
 @keyframes legs { 0% { opacity: 1; } 50% { opacity: 0; } }
 
 @media (prefers-reduced-motion: no-preference) {
   .walk { animation: walk 40s steps(25) infinite; }
+  @container (max-width: 13rem) { .walk { animation-name: walk-s; } }
   /* Only these two turtles move their legs: an animated layer on the back face shows through in Firefox. */
   :is(.walk, .pi) :is(.la, .lb) { animation: legs .6s steps(1, end) infinite; }
   :is(.walk, .pi) .lb { animation-delay: -.3s; }
   .colo .frame:hover .walk { animation-play-state: paused; }
 
-  .logo { animation: float 6.5s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -1.7s); }
+  .lg { animation: float 6.5s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -1.7s); }
   .front::after { animation: pool 6.5s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -1.7s); }
 
   @supports (animation-timeline: view()) {
@@ -335,20 +349,21 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
   border-radius: 26px;
   width: min(60rem, calc(100vw - 1.5rem));
   max-height: calc(100dvh - 1.5rem);
-  overflow: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
   color: var(--ink);
   background: linear-gradient(160deg, color-mix(in oklab, var(--c) 10%, transparent), transparent 40%), var(--glass);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
   backdrop-filter: blur(24px) saturate(1.6);
   box-shadow: 0 1px 0 var(--rim) inset, 0 0 0 1px var(--line), 0 50px 100px -40px var(--shade);
-  scrollbar-width: thin;
   opacity: 0;
   scale: .96;
   transition: opacity .25s, scale .45s cubic-bezier(.2, .9, .25, 1), overlay .45s allow-discrete, display .45s allow-discrete;
 }
 
-.p:popover-open { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); opacity: 1; scale: 1; }
+.p:popover-open { display: block; opacity: 1; scale: 1; }
+
+/* The content scrolls inside the panel, so the close button stays in view. */
+.sc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); max-height: inherit; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 
 @starting-style {
   .p:popover-open { opacity: 0; scale: .96; }
@@ -369,8 +384,8 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
 }
 
 /* At least square; taller when the text next to it is taller. */
-.p > .shot { position: relative; align-self: stretch; margin: .9rem; border-radius: 18px; }
-.p > .shot::before { content: ""; display: block; padding-top: 100%; }
+.sc > .shot { position: relative; align-self: stretch; margin: .9rem; border-radius: 18px; }
+.sc > .shot::before { content: ""; display: block; padding-top: 100%; }
 
 .info { display: flex; flex-direction: column; padding: 1.6rem 1.6rem 1.5rem .6rem; }
 
@@ -429,6 +444,12 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
 .get a:first-child small { color: inherit; opacity: .6; }
 .get a:first-child:hover, .get a:first-child:focus-visible { background: var(--c); color: #fff; }
 
+/* Touch screens: targets of 44 px or more. */
+@media (pointer: coarse) {
+  .x { width: 2.75rem; height: 2.75rem; }
+  .get a { padding-block: .75rem; }
+}
+
 .brew { display: block; margin: .7rem 0 0; color: var(--mute); user-select: all; -webkit-user-select: all; overflow-wrap: anywhere; }
 .brew::before { content: "or  "; white-space: pre; }
 
@@ -439,15 +460,15 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
 
 @media (prefers-reduced-motion: no-preference) {
   .p:popover-open h2 { animation: develop .7s steps(1, end) both .12s; }
-  .p:popover-open > .shot > * { animation: rise .8s cubic-bezier(.2, .9, .25, 1) both .1s; }
-  .p:popover-open > .shot > :nth-child(2) { animation-delay: .2s; }
+  .p:popover-open .sc > .shot > * { animation: rise .8s cubic-bezier(.2, .9, .25, 1) both .1s; }
+  .p:popover-open .sc > .shot > :nth-child(2) { animation-delay: .2s; }
 }
 
 @keyframes rise { from { opacity: 0; translate: 0 14%; } to { opacity: 1; translate: none; } }
 
 @media (max-width: 46rem) {
-  .p:popover-open { grid-template-columns: 1fr; }
-  .p > .shot { margin: .6rem .6rem 0; }
+  .sc { grid-template-columns: 1fr; }
+  .sc > .shot { margin: .6rem .6rem 0; }
   .info { padding: 1.2rem 1.2rem 1.3rem; }
   .x { top: 1.1rem; right: 1.1rem; }
 }
@@ -576,7 +597,7 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
   .turn { transform: none !important; transition: none; }
   .back, .front { transform: none; transition: opacity .25s; }
   .back { opacity: 0; }
-  .logo { transform: none; }
+  .lg { transform: none; }
   .frame:hover .back, .frame:has(.hit:focus-visible) .back { opacity: 1; }
   .frame:hover .front, .frame:has(.hit:focus-visible) .front { opacity: 0; }
   .frame { transition: none; }

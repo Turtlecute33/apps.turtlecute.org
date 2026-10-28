@@ -149,7 +149,7 @@ def tile(app, i):
     return (
         f'<article class="tile t-{slug}{" l" if app.get("size") == "l" else ""}" style="{colours(app)};--i:{i}">'
         f'<div class="frame"><div class="turn"><div class="flip">'
-        f'<div class="face front">{use(slug, "logo")}</div>'
+        f'<div class="face front"><span class="lg">{use(slug, "logo")}</span></div>'
         f'<div class="face back shot" aria-hidden="true">{app["shot"].strip()}</div>'
         f"</div></div>"
         f'<p class="pl"><b>{esc(app["name"])}</b><span>{esc(kind)}</span></p>'
@@ -182,13 +182,13 @@ def panel(app):
 
     return (
         f'<section popover id="{slug}" class="p" aria-labelledby="{slug}-t" style="{colours(app)}">'
+        f'<button class="x" popovertarget="{slug}" popovertargetaction="hide" aria-label="Close">'
+        f'<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2l6 6M8 2l-6 6"/></svg></button><div class="sc">'
         f'<figure class="shot" aria-hidden="true">{app["shot"].strip()}</figure>'
         f'<div class="info"><header>{use(slug, "pi")}<div><h2 id="{slug}-t">{esc(app["name"])}</h2>'
-        f'<p class="kind">{esc(app["noun"])}</p></div>'
-        f'<button class="x" popovertarget="{slug}" popovertargetaction="hide" aria-label="Close">'
-        f'<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2l6 6M8 2l-6 6"/></svg></button></header>'
+        f'<p class="kind">{esc(app["noun"])}</p></div></header>'
         f'<p class="line">{esc(app["line"])}</p>{points}'
-        f'<nav class="get">{links}</nav>{brew}<dl>{dl}</dl>{note}</div></section>'
+        f'<nav class="get">{links}</nav>{brew}<dl>{dl}</dl>{note}</div></div></section>'
     )
 
 

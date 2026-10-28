@@ -116,16 +116,16 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
     var(--bg);
 }
 
+/* A soft gradient, not a blur filter: a blurred layer that scales must be blurred again on every
+   frame. */
 .front::after {
   content: "";
   position: absolute;
-  left: 34%;
-  right: 34%;
-  top: 70%;
-  height: 5%;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, .55);
-  filter: blur(2.2cqi);
+  left: 29.5%;
+  right: 29.5%;
+  top: 65.5%;
+  height: 14%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, .42), rgba(0, 0, 0, .3) 35%, rgba(0, 0, 0, .1) 70%, transparent);
   opacity: .65;
   transform: translateZ(1px);
 }
@@ -166,6 +166,11 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
   background-size: 300% 100%;
   background-position: 100% 0;
   opacity: 0;
+}
+
+/* Touch screens: tinted glass without the live blur, which the GPU computes again on every frame. */
+@media (hover: none) {
+  .pl { -webkit-backdrop-filter: none; backdrop-filter: none; background: color-mix(in oklab, color-mix(in oklab, var(--bg) 65%, #000) 82%, transparent); }
 }
 
 @container (max-width: 13rem) {
@@ -319,10 +324,13 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
   .lg { animation: float 6.5s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -1.7s); }
   .front::after { animation: pool 6.5s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -1.7s); }
 
+  /* With a mouse only: on a touch screen, motion tied to the scroll feels like lag under the finger. */
   @supports (animation-timeline: view()) {
-    /* A square hangs straight as it comes into view; its name decodes on the way. */
-    .tile { transform-origin: 50% 0; animation: settle linear both; animation-timeline: view(); animation-range: cover 0% cover 28%; }
-    .pl b { animation: develop linear both; animation-timeline: view(); animation-range: entry 30% cover 40%; }
+    @media (hover: hover) {
+      /* A square hangs straight as it comes into view; its name decodes on the way. */
+      .tile { transform-origin: 50% 0; animation: settle linear both; animation-timeline: view(); animation-range: cover 0% cover 28%; }
+      .pl b { animation: develop linear both; animation-timeline: view(); animation-range: entry 30% cover 40%; }
+    }
   }
 }
 

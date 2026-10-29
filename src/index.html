@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; font-src 'self'; img-src 'self'; script-src https://umami.priorato.org; connect-src https://umami.priorato.org; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#efede8" media="(prefers-color-scheme: light)">
@@ -26,6 +26,7 @@
 {{preload}}
 <style>{{css}}</style>
 <script type="application/ld+json">{{jsonld}}</script>
+<script defer src="https://umami.priorato.org/script.js" data-website-id="31cc7fe5-5983-4c8d-aaf5-d8fd4399e5eb" data-domains="{{domain}}"></script>
 </head>
 <body>
 {{sprite}}
@@ -42,7 +43,7 @@
 <div class="face back shot" aria-hidden="true">{{about}}</div>
 </div></div>
 <p class="pl"><b>{{handle}}</b><span>about · links</span></p>
-<button class="hit" popovertarget="about" aria-label="About {{handle}}"></button>
+<button class="hit" popovertarget="about" aria-label="About {{handle}}" data-umami-event="open-about"></button>
 </div>
 </aside>
 </div>
@@ -56,7 +57,7 @@
 <p class="kind">{{role}}</p></div></header>
 {{bio}}
 <nav class="get">{{links}}</nav>
-<dl><div><dt>Apps</dt><dd>{{count}}, all open source</dd></div><div><dt>This page</dt><dd>{{weight}}</dd></div><div><dt>Talks to</dt><dd>{{domain}} only</dd></div></dl></div>
+<dl><div><dt>Apps</dt><dd>{{count}}, all open source</dd></div><div><dt>This page</dt><dd>{{weight}}</dd></div><div><dt>Talks to</dt><dd>{{domain}}, umami.priorato.org (visit counts)</dd></div></dl></div>
 </div>
 </section>
 </body>

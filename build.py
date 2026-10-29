@@ -153,7 +153,8 @@ def tile(app, i):
         f'<div class="face back shot" aria-hidden="true">{app["shot"].strip()}</div>'
         f"</div></div>"
         f'<p class="pl"><b>{esc(app["name"])}</b><span>{esc(kind)}</span></p>'
-        f'<button class="hit" popovertarget="{slug}" aria-label="{esc(app["name"])}, {esc(app["noun"])}"></button>'
+        f'<button class="hit" popovertarget="{slug}" aria-label="{esc(app["name"])}, {esc(app["noun"])}"'
+        f' data-umami-event="open-app" data-umami-event-app="{esc(app["name"])}"></button>'
         f"</div></article>"
     )
 
@@ -171,10 +172,14 @@ def panel(app):
     facts.append(("Release", release))
     dl = "".join(f"<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>" for k, v in facts)
 
+    # data-umami-event*: Umami counts each click as an event with these properties (see README).
+    track = f'data-umami-event-app="{esc(app["name"])}"'
     links = "".join(
-        f'<a href="{esc(r["url"])}">{esc(d["label"])}<small>{size(r["size"])}</small></a>' for d, r in downloads
+        f'<a href="{esc(r["url"])}" data-umami-event="download" {track} data-umami-event-platform="{esc(d["label"])}">'
+        f'{esc(d["label"])}<small>{size(r["size"])}</small></a>'
+        for d, r in downloads
     )
-    links += f'<a href="https://github.com/{esc(app["repo"])}" class="src">Source</a>'
+    links += f'<a href="https://github.com/{esc(app["repo"])}" class="src" data-umami-event="source" {track}>Source</a>'
     brew = f'<code class="brew">brew install --cask {esc(app["brew"])}</code>' if app.get("brew") else ""
     points = "".join(f"<li>{esc(p)}</li>" for p in app.get("points", []))
     points = f'<ul class="pts">{points}</ul>' if points else ""
@@ -286,7 +291,10 @@ def main():
     preload = "".join(
         f'<link rel="preload" href="fonts/{file}" as="font" type="font/woff2" crossorigin>' for _, _, file in FONTS
     )
-    links = "".join(f'<a href="{esc(url)}" rel="me">{esc(name)}</a>' for name, url in site["links"].items())
+    links = "".join(
+        f'<a href="{esc(url)}" rel="me" data-umami-event="link" data-umami-event-to="{esc(name)}">{esc(name)}</a>'
+        for name, url in site["links"].items()
+    )
     lead = " ".join(f'<span style="--i:{i}">{esc(w)}</span>' for i, w in enumerate((site["lead"] + ".").split()))
     turtle = (ROOT / "src" / "turtle.svg").read_text().strip()
 
@@ -336,6 +344,7 @@ def main():
     (OUT / "llms.txt").write_text(llms(site, apps))
 
     # The weight line counts what a first visit downloads: the gzipped page, the fonts, the icon.
+    # The Umami script (about 1.5 KB) comes from umami.priorato.org and is not in the count.
     # Two passes, because the line is part of the page it measures.
     files = 2 + len(FONTS)
     weight = "{{weight}}"
@@ -343,7 +352,7 @@ def main():
         text = page.replace("{{weight}}", weight)
         total = len(gzip.compress(text.encode(), 9)) + sum((OUT / "fonts" / f).stat().st_size for _, _, f in FONTS)
         total += len(gzip.compress((OUT / "favicon.svg").read_bytes(), 9))
-        weight = f"{total / 1024:.0f} KB · {files} files · no scripts"
+        weight = f"{total / 1024:.0f} KB · {files} files + Umami analytics"
     page = page.replace("{{weight}}", weight)
     (OUT / "index.html").write_text(page)
     print(f"{len(apps)} apps, {weight}")

@@ -2,7 +2,7 @@
 
 A wall of squares, one per app: the logo in front, the app's screens behind, a glass label on top.
 Click a square for the close-up with downloads; the last square (the turtle) opens the links. Static, no
-JavaScript, no third-party requests.
+JavaScript of its own. The one third-party request is the Umami analytics script (umami.priorato.org).
 
 ## Add an app
 
@@ -77,3 +77,13 @@ so a new app release shows on the site within a day.
   `site.toml`. On touch screens one square
   turns every 3.5 s; the loop in `src/style.css` is 35 s for 10 squares. Change it when you add an app.
 - Animate `transform`, not `translate`, on an `<svg>`: Chromium keeps `translate` on the main thread.
+- Analytics: Umami (`umami.priorato.org`), no cookies. The script tag, the CSP and the "Talks to" line are
+  in `src/index.html`. `data-domains` stops counts from local builds. Click events (Umami → Events):
+
+  | Event | Properties | Click on |
+  |---|---|---|
+  | `open-app` | `app` | a square on the wall |
+  | `download` | `app`, `platform` | a download button in a close-up |
+  | `source` | `app` | the Source button in a close-up |
+  | `open-about` | | the turtle square |
+  | `link` | `to` | a link in the about close-up |

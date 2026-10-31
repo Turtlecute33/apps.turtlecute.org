@@ -16,6 +16,7 @@ asks = "microphone, contacts (optional), network"
 talks = "OpenRouter or PayPerQ, only with your key"
 based_on = "HeliBoard"
 repo = "Turtlecute33/WisprBoard"
+zapstore = "helium314.keyboard.wisprboard"
 
 [[download]]
 label = "Android"

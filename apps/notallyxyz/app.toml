@@ -15,6 +15,7 @@ asks = "microphone for voice notes, alarms for reminders"
 talks = "nothing, or your own server when sync is on"
 based_on = "NotallyX"
 repo = "Turtlecute33/NotallyXYZ"
+zapstore = "com.notallyxyz"
 brew = "turtlecute33/tap/notallyxyz"
 
 [[download]]

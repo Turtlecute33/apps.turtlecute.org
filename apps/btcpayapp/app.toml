@@ -16,6 +16,7 @@ license = "MIT"
 asks = "network, camera for QR codes"
 talks = "your BTCPay server, through Orbot for .onion"
 repo = "Turtlecute33/btcpayapp"
+zapstore = "com.btcpayapp"
 
 [[download]]
 label = "Android"

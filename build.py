@@ -96,6 +96,11 @@ def resolve(download):
     return {"url": f"https://github.com/{download['repo']}/releases", "size": None, "version": None, "pre": False}
 
 
+def zapstore(app):
+    """The app page on Zapstore, the Nostr app store. `zapstore` in app.toml is the Android package id."""
+    return f'https://zapstore.dev/apps/{app["zapstore"]}'
+
+
 def size(n):
     if n is None:
         return ""
@@ -179,6 +184,8 @@ def panel(app):
         f'{esc(d["label"])}<small>{size(r["size"])}</small></a>'
         for d, r in downloads
     )
+    if app.get("zapstore"):
+        links += f'<a href="{esc(zapstore(app))}" class="zap" data-umami-event="zapstore" {track}>Zapstore</a>'
     links += f'<a href="https://github.com/{esc(app["repo"])}" class="src" data-umami-event="source" {track}>Source</a>'
     brew = f'<code class="brew">brew install --cask {esc(app["brew"])}</code>' if app.get("brew") else ""
     points = "".join(f"<li>{esc(p)}</li>" for p in app.get("points", []))
@@ -238,6 +245,8 @@ def jsonld(site, apps):
             item["featureList"] = app["points"]
         if downloads:
             item["downloadUrl"] = downloads[0]["url"]
+        if app.get("zapstore"):
+            item["installUrl"] = zapstore(app)
         version = next((r["version"] for r in downloads if r["version"]), None)
         if version:
             item["softwareVersion"] = version
@@ -261,6 +270,8 @@ def llms(site, apps):
         lines.append(f"- [{app['name']}](https://github.com/{app['repo']}): {app['noun']} for "
                      f"{', '.join(app['platforms'])}, {app['license']}. {app['line']}")
         lines += [f"  - {p}" for p in app.get("points", [])]
+        if app.get("zapstore"):
+            lines.append(f"  - On Zapstore: {zapstore(app)}")
         if app.get("note"):
             lines.append(f"  - {app['note']}")
     lines += ["", "## Links", ""] + [f"- {name}: {url}" for name, url in site["links"].items()]

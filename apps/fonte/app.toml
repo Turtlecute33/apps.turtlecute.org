@@ -15,6 +15,7 @@ license = "GPL-3.0"
 asks = "network, install and update apps, see installed apps"
 talks = "only the sources you add"
 repo = "Turtlecute33/Fonte"
+zapstore = "app.fonte"
 
 [[download]]
 label = "Android"

@@ -34,6 +34,7 @@ talks = "your mail server"          # where it connects
 based_on = "HeliBoard"              # optional
 repo = "Turtlecute33/Plico"
 brew = "turtlecute33/tap/x"         # optional
+zapstore = "app.plico"              # optional: Android package id; adds a Zapstore button
 
 [[download]]                  # one block per platform
 label = "Android"
@@ -84,6 +85,7 @@ so a new app release shows on the site within a day.
   |---|---|---|
   | `open-app` | `app` | a square on the wall |
   | `download` | `app`, `platform` | a download button in a close-up |
+  | `zapstore` | `app` | the Zapstore button in a close-up |
   | `source` | `app` | the Source button in a close-up |
   | `open-about` | | the turtle square |
   | `link` | `to` | a link in the about close-up |

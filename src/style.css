@@ -445,7 +445,7 @@ body { margin: 0; font: 400 1rem/1.45 R, Georgia, serif; font-synthesis: none; }
 }
 
 .get a::after { content: "↓"; }
-.get a.src::after { content: "↗"; }
+.get a.src::after, .get a.zap::after { content: "↗"; }
 .get small { color: var(--mute); font-size: inherit; }
 .get a:hover, .get a:focus-visible { background: color-mix(in oklab, var(--c) 12%, transparent); box-shadow: 0 0 0 1px var(--c) inset; outline: 0; }
 .get a:first-child { background: var(--ink); color: var(--paper); box-shadow: none; }

@@ -16,6 +16,7 @@ asks = "network, photos and videos for camera uploads"
 talks = "MEGA"
 based_on = "MEGA SDK"
 repo = "Turtlecute33/MegaGlass-Android"
+zapstore = "app.megaglass.android"
 brew = "turtlecute33/tap/megaglass"
 
 [[download]]

@@ -16,6 +16,7 @@ asks = "network, NFC (YubiKey), biometrics"
 talks = "your SSH servers"
 based_on = "Termux terminal engine"
 repo = "Turtlecute33/Varco"
+zapstore = "app.varco"
 
 [[download]]
 label = "Android"

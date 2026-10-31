@@ -18,6 +18,7 @@ asks = "network, VPN"
 talks = "Obscura VPN"
 based_on = "Obscura Rust core"
 repo = "Turtlecute33/Ombra"
+zapstore = "app.ombra"
 
 [[download]]
 label = "Android"

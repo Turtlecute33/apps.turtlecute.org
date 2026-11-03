@@ -80,20 +80,24 @@ def releases(repo):
 
 
 def resolve(download):
-    """The newest non-draft release asset that matches the pattern, or a link to the releases page."""
+    """The newest non-draft release asset that matches the pattern, or a link to the releases page.
+    An APK is not a download from this site: its link opens the release on GitHub (`page` is true)."""
     pattern = re.compile(download["asset"])
     for release in releases(download["repo"]):
         if release.get("draft"):
             continue
         for asset in release.get("assets", []):
             if pattern.search(asset["name"]):
+                page = asset["name"].endswith(".apk")
                 return {
-                    "url": asset["browser_download_url"],
+                    "url": release["html_url"] if page else asset["browser_download_url"],
                     "size": asset["size"],
                     "version": release["tag_name"].lstrip("v"),
                     "pre": release.get("prerelease", False),
+                    "page": page,
                 }
-    return {"url": f"https://github.com/{download['repo']}/releases", "size": None, "version": None, "pre": False}
+    return {"url": f"https://github.com/{download['repo']}/releases", "size": None, "version": None, "pre": False,
+            "page": True}
 
 
 def zapstore(app):
@@ -179,9 +183,11 @@ def panel(app):
 
     # data-umami-event*: Umami counts each click as an event with these properties (see README).
     track = f'data-umami-event-app="{esc(app["name"])}"'
+    gh = ' class="gh"'
     links = "".join(
-        f'<a href="{esc(r["url"])}" data-umami-event="download" {track} data-umami-event-platform="{esc(d["label"])}">'
-        f'{esc(d["label"])}<small>{size(r["size"])}</small></a>'
+        f'<a href="{esc(r["url"])}"{gh if r["page"] else ""} data-umami-event="download" {track} '
+        f'data-umami-event-platform="{esc(d["label"])}">'
+        f'{esc(d["label"])}<small>{"GitHub" if r["page"] else size(r["size"])}</small></a>'
         for d, r in downloads
     )
     if app.get("zapstore"):

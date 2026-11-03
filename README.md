@@ -43,7 +43,8 @@ asset = '\.apk$'              # regex for the release asset name
 ```
 
 The build gets the version, size and link of each download from the newest release that has a
-matching asset (pre-releases too).
+matching asset (pre-releases too). An APK is not a download from this site: its button opens the GitHub release, next to
+the Zapstore button.
 
 ## Build
 
@@ -84,7 +85,7 @@ so a new app release shows on the site within a day.
   | Event | Properties | Click on |
   |---|---|---|
   | `open-app` | `app` | a square on the wall |
-  | `download` | `app`, `platform` | a download button in a close-up |
+  | `download` | `app`, `platform` | a download button in a close-up (Android: the GitHub release) |
   | `zapstore` | `app` | the Zapstore button in a close-up |
   | `source` | `app` | the Source button in a close-up |
   | `open-about` | | the turtle square |

@@ -9,7 +9,7 @@ points = [
   "Your own OpenRouter or PayPerQ key, zero data retention first",
   "Refuses password fields and terminals, and never logs your text",
 ]
-platforms = ["macOS 13+", "Windows"]
+platforms = ["macOS 13+", "Windows", "Linux"]
 license = "GPL-3.0"
 asks = "Accessibility on macOS, one global hotkey"
 talks = "OpenRouter or PayPerQ, only with your key"
@@ -25,3 +25,13 @@ asset = 'macos.*\.zip$'
 label = "Windows"
 repo = "Turtlecute33/TextFix"
 asset = 'win.*\.zip$'
+
+[[download]]
+label = "Linux"
+repo = "Turtlecute33/TextFix"
+asset = '-linux-x64\.zip$'
+
+[[download]]
+label = "Omarchy"
+repo = "Turtlecute33/TextFix"
+asset = '-omarchy-x64\.pkg\.tar\.zst$'
